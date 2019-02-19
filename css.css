@@ -73,30 +73,3 @@ button.startGame {
 
 /*
  */
-div.face {
-    backface-visibility: hidden;
-    transition: 1s;
-    position: absolute;
-    width: 100px;
-    height: 150px;
-    transform-style: preserve-3d;
-}
-
-div.front {
-    position: absolute;
-    background-color: red;
-    height: 100%;
-    width: 100%;
-}
-
-div.back {
-    position: absolute;
-    background-color: blue;
-    height: 100%;
-    width: 100%;
-    transform: rotateY(180deg);
-}
-
-.face:hover {
-    transform: rotateY(180deg);
-}
