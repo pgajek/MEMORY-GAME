@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: royalblue;
+}
+
+h1 {
+    margin-top: 5vh;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+
+.main-board {
+    width: 80vw;
+    height: 80vh;
+    background-color: royalblue;
+    box-shadow: 0 0 50px black;
+    margin-top: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.board {
+    height: 70vh;
+    width: 70vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.card {
+    background-color: #222222;
+    width: 15vh;
+    height: 15vh;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.card.card-in-tab {
+    background-color: #fff;
+    transform: rotateY(180deg);
+}
+
+.card.card-checked {
+    background-color: transparent;
+    color: transparent;
+}
+
+
+.card:disabled {
+    color: transparent;
+}
+
+button.startGame {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px black;
+}
+
+/*
+ */
+div.face {
+    backface-visibility: hidden;
+    transition: 1s;
+    position: absolute;
+    width: 100px;
+    height: 150px;
+    transform-style: preserve-3d;
+}
+
+div.front {
+    position: absolute;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+}
+
+div.back {
+    position: absolute;
+    background-color: blue;
+    height: 100%;
+    width: 100%;
+    transform: rotateY(180deg);
+}
+
+.face:hover {
+    transform: rotateY(180deg);
+}
