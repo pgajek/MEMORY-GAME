@@ -7,24 +7,34 @@ class Game {
     this.cardsChecked = [];
     this.turnCount = 0;
     this.points = 0;
-    this.cardsImg = [];
+    this.cardsImg = ['img/america.jpg','img/ironman.jpg','img/deadpool.jpg','img/hawkeye.jpg','img/hulk.jpg','img/spidey.jpg','img/thor.jpg','img/widow.jpg'];
     this.canGet = true;
+  }
+  isGameOver(){
+    this.board.innerHTML = '<h1> YOU WON! GRATULATIONS</h1>';
   }
   cardReset() {
     this.cardsChecked[0].classList.remove('card-in-tab');
     this.cardsChecked[1].classList.remove('card-in-tab');
+    this.cardsChecked[0].style.backgroundImage = 'url(img/marvel.jpg)';
+    this.cardsChecked[1].style.backgroundImage = 'url(img/marvel.jpg)';
     this.cardsChecked = [];
     this.canGet = true;
+
   }
   cardRemove() {
-    this.cardsChecked[0].classList.remove('card-in-tab');
-    this.cardsChecked[1].classList.remove('card-in-tab');
-    this.cardsChecked[0].classList.add('card-checked');
-    this.cardsChecked[1].classList.add('card-checked');
+
+     this.cardsChecked[0].style.backgroundImage = null;
+     this.cardsChecked[1].style.backgroundImage =null;
+    this.cardsChecked[0].classList.remove('card');
+    this.cardsChecked[1].classList.remove('card');
     this.points += 2;
-    document.querySelector('.points').textContent = ` You have:${this.points} points`;
+    document.querySelector('.points').textContent = ` You have: ${this.points} points`;
     this.cardsChecked = [];
     this.canGet = true;
+    if (this.points === 16) {
+      this.isGameOver();
+    }
   }
   cardReveal(e) {
     const card = e.target;
@@ -33,6 +43,7 @@ class Game {
         if (!this.cardsChecked[0] || (this.cardsChecked[0].dataset.index !== card.dataset.index)) {
           this.cardsChecked.push(card);
           card.classList.add('card-in-tab');
+          card.style.backgroundImage = `url(${this.cardsImg[card.dataset.type]})`;
 
         }
         if (this.cardsChecked.length === 2) {
@@ -41,7 +52,7 @@ class Game {
           if (
             this.cardsChecked[0].dataset.type === this.cardsChecked[1].dataset.type
           ) {
-            setTimeout(this.cardRemove.bind(this), 500);
+            setTimeout(this.cardRemove.bind(this), 800);
           } else {
             setTimeout(this.cardReset.bind(this), 500);
           }
@@ -61,7 +72,7 @@ class Game {
     this.board = document.querySelector(".board");
     this.board.innerHTML = "";
     document.querySelector('.turn-count').textContent = `Turn:${this.turnCount}`;
-    document.querySelector('.points').textContent = ` You have:${this.points} points`;
+    document.querySelector('.points').textContent = ` You have: ${this.points} points`;
     for (let i = 0; i < this.cardCount; i++) {
       const number = Math.floor(i / 2);
       this.cards.push(number);
@@ -70,20 +81,19 @@ class Game {
 
     for (let i = 0; i < this.cardCount; i++) {
       const card = document.createElement("div");
+      card.classList.add('box');
       card.classList.add("card");
       card.dataset.type = this.cards[i];
       card.dataset.index = i;
-      card.textContent = card.dataset.type;
       card.addEventListener("click", this.cardReveal.bind(this));
       this.board.appendChild(card);
     }
   }
-}
+}// koniec klasy
 
 const game = new Game();
 document.addEventListener("DOMContentLoaded", function () {
-  document
-    .querySelector("button.startGame")
+  document.querySelector("button.startGame")
     .addEventListener("click", function () {
       return game.startGame();
     });

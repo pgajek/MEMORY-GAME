@@ -9,27 +9,54 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: royalblue;
+    font-family: monospace;
+    background-color: #1d212b;
 }
-
-h1 {
-    margin-top: 5vh;
-    color: white;
-    text-shadow: 2px 2px 2px black;
-}
-
 .main-board {
     width: 80vw;
     height: 80vh;
-    background-color: royalblue;
-    box-shadow: 0 0 50px black;
     margin-top: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    border-radius: 6%;
+    background-color: #151823;
+    position: relative;
+    color: #fff;
+    font-family: monospace;
+    border: 2px solid white;
 }
+.main-board:after {
+    position: absolute;
+    content: "";
+    top: 1vw;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    /* -webkit-transform: scale(0.75);
+    transform: scale(0.75); */
+    -webkit-filter: blur(5vw);
+    -moz-filter: blur(5vw);
+    -ms-filter: blur(5vw);
+    filter: blur(5vw);
+    background: -webkit-gradient(linear, right top, left top, from(#0fffc1), to(#7e0fff));
+    background: linear-gradient(270deg, #ec780b, #5a0101);
+    background-size: 200% 200%;
+    -webkit-animation: animateGlow 5s ease infinite;
+    animation: animateGlow 5s ease infinite;
 
+}
+.stats{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+}
 .board {
     height: 70vh;
     width: 70vh;
@@ -37,24 +64,30 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: space-around;
-}
 
+}
+.board h1{
+    margin-top: 50%;
+    transform: translateY(-50%);
+}
+.box{
+width: 15vh;
+height: 15vh;
+transition: .5s;
+
+}
 .card {
-    background-color: #222222;
-    width: 15vh;
-    height: 15vh;
+    background-image: url(img/marvel.jpg);
+    background-size: contain;
     cursor: pointer;
-    transition: .5s;
+    border-radius: 0% 15%;
+    border: 2px solid white;
+    box-shadow: 1px 1px 2px black;
 }
 
 .card.card-in-tab {
-    background-color: #fff;
     transform: rotateY(180deg);
-}
-
-.card.card-checked {
-    background-color: transparent;
-    color: transparent;
+    background-size: contain;
 }
 
 
@@ -69,7 +102,42 @@ button.startGame {
     border: none;
     text-transform: uppercase;
     text-shadow: 1px 1px 2px black;
+    cursor:pointer;
+    border-radius: 6%;
+}
+button.startGame:focus{
+    outline: none;
+}
+button.startGame:hover{
+    background-color: orangered;
 }
 
-/*
+/*ANIMATIONS
  */
+ @-webkit-keyframes animateGlow {
+     0% {
+         background-position: 0% 50%;
+     }
+
+     50% {
+         background-position: 100% 50%;
+     }
+
+     100% {
+         background-position: 0% 50%;
+     }
+ }
+
+ @keyframes animateGlow {
+     0% {
+         background-position: 0% 50%;
+     }
+
+     50% {
+         background-position: 100% 50%;
+     }
+
+     100% {
+         background-position: 0% 50%;
+     }
+ }
