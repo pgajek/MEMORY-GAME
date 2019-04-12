@@ -82,8 +82,11 @@ body {
 .box {
     width: 24%;
     height: 14vh;
-    transition: .5s;
-
+    transition:.5s, background-image .5s, backgroung-position  0s .5s;
+    -webkit-transition:.5s, background-image .5s, backgroung-position  0s .5s;
+    -moz-transition:.5s, background-image .5s, backgroung-position  0s .5s;
+    -ms-transition:.5s, background-image .5s, backgroung-position  0s .5s;
+    -o-transition:.5s, background-image .5s, backgroung-position  0s .5s;
 }
 
 .card {
@@ -101,11 +104,13 @@ body {
 .card.card-in-tab {
     transform: rotateY(180deg);
     background-color: #fff;
-    background-size: ccontain;
-    background-repeat: no-repeat;
     background-position: bottom ;
     border-color: transparent;
     background-origin: border-box;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
 }
 
 button.startGame {
@@ -164,6 +169,29 @@ button.startGame:hover {
         filter: blur(5vw);
     }
 }
+/* @keyFrames rotate{
+    0%{
+        transform:rotateY(0deg)    ;
+        -webkit-transform:rotateY(0deg)    ;
+        -moz-transform:rotateY(0deg)    ;
+        -ms-transform:rotateY(0deg)    ;
+        -o-transform:rotateY(0deg)    ;
+    }
+    50%{
+        transform:rotateY(90deg)    ;
+        -webkit-transform:rotateY(90deg)    ;
+        -moz-transform:rotateY(90deg)    ;
+        -ms-transform:rotateY(90deg)    ;
+        -o-transform:rotateY(90deg)    ;
+    }
+    100%{
+        transform:rotateY(180deg)    ;
+        -webkit-transform:rotateY(180deg)    ;
+        -moz-transform:rotateY(180deg)    ;
+        -ms-transform:rotateY(180deg)    ;
+        -o-transform:rotateY(180deg)    ;
+}
+} */
 @media(orientation: landscape){
 
     .board {
@@ -172,8 +200,6 @@ button.startGame:hover {
     .box {
         width: 25vh;
         height: 23%;
-        transition: .5s;
-
     }
 
     .card.card-in-tab {

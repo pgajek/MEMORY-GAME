@@ -1,3 +1,5 @@
+import Card from './card.js';
+
 class Game {
   constructor() {
     this.cardCount = 16;
@@ -14,20 +16,19 @@ class Game {
     this.board.innerHTML = '<h1> YOU WON! GRATULATIONS</h1>';
   }
   cardReset() {
-    this.cardsChecked[0].classList.remove('card-in-tab');
-    this.cardsChecked[1].classList.remove('card-in-tab');
-    this.cardsChecked[0].style.backgroundImage = 'url(img/marvel.jpg)';
-    this.cardsChecked[1].style.backgroundImage = 'url(img/marvel.jpg)';
+    for (const checked of this.cardsChecked) {
+      checked.classList.remove('card-in-tab');
+      checked.style.backgroundImage = 'url(img/marvel.jpg)';
+    }
     this.cardsChecked = [];
     this.canGet = true;
 
   }
   cardRemove() {
-
-    this.cardsChecked[0].style.backgroundImage = null;
-    this.cardsChecked[1].style.backgroundImage = null;
-    this.cardsChecked[0].classList.remove('card');
-    this.cardsChecked[1].classList.remove('card');
+    for (const checked of this.cardsChecked) {
+      checked.style.backgroundImage = null;
+      checked.classList.remove('card');
+    }
     this.points += 2;
     document.querySelector('.points').textContent = ` You have: ${this.points} points`;
     this.cardsChecked = [];
@@ -44,7 +45,6 @@ class Game {
           this.cardsChecked.push(card);
           card.classList.add('card-in-tab');
           card.style.backgroundImage = `url(${this.cardsImg[card.dataset.type]})`;
-
         }
         if (this.cardsChecked.length === 2) {
           this.canGet = false;
@@ -80,17 +80,11 @@ class Game {
     this.cards.sort(() => Math.random() - 0.5);
 
     for (let i = 0; i < this.cardCount; i++) {
-      const card = document.createElement("div");
-      card.classList.add('box');
-      card.classList.add("card");
-      card.dataset.type = this.cards[i];
-      card.dataset.index = i;
-      card.addEventListener("click", this.cardReveal.bind(this));
-      this.board.appendChild(card);
+      const { cards, cardReveal } = this;
+      const card = new Card('/img/marvel.jpg', i, cards[i], cardReveal.bind(this));
     }
   }
 } // koniec klasy
-
 const game = new Game();
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelector("button.startGame")
