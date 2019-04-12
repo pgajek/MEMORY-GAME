@@ -1,19 +1,25 @@
 class Card {
-    constructor(bgImg, index, type, click) {
+    constructor(img, index, type, click) {
         this.puzzle = document.createElement('div');
-        this.img = `url(${bgImg})`;
+        this.puzzleFront = document.createElement('div');
+        this.puzzleBack = document.createElement('div');
+        this.img = `url(${img})`;
         this.index = index;
         this.type = type;
         this.click = click;
         this.createPuzzle();
     }
     createPuzzle() {
-        const { puzzle, img, index, type, click } = this;
+        const { puzzle, img, index, type, click, puzzleFront, puzzleBack } = this;
         puzzle.classList.add('box');
         puzzle.classList.add('card');
-        // puzzle.style.backgroundImage = img;
         puzzle.dataset.type = type;
         puzzle.dataset.index = index;
+        puzzleFront.classList.add('front');
+        puzzleFront.style.backgroundImage = img;
+        puzzleBack.classList.add('back');
+        puzzle.appendChild(puzzleFront);
+        puzzle.appendChild(puzzleBack);
         puzzle.addEventListener('click', click);
         document.querySelector('.board').appendChild(puzzle);
     }

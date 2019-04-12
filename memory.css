@@ -80,6 +80,7 @@ body {
 }
 
 .box {
+    position: relative;
     width: 24%;
     height: 14vh;
     transition:.5s, background-image .5s, backgroung-position  0s .5s;
@@ -88,29 +89,65 @@ body {
     -ms-transition:.5s, background-image .5s, backgroung-position  0s .5s;
     -o-transition:.5s, background-image .5s, backgroung-position  0s .5s;
 }
-
-.card {
-    background-image: url(img/marvel.jpg);
-    background-size: contain;
-    cursor: pointer;
-    border-radius: 0% 15%;
+.front, .back{
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border: 2px solid white;
     box-shadow: 1px 1px 2px black;
+    cursor: pointer;
+    border-radius: 0% 15%;
+    transition: .6s;
+    -webkit-transition: .6s;
+    -moz-transition: .6s;
+    -ms-transition: .6s;
+    -o-transition: .6s;
+}
+.front{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-color: #fff;
+    transform: rotateY(180deg) perspective(20vh);
+    -webkit-transform: rotateY(180deg) perspective(20vh);
+    -moz-transform: rotateY(180deg) perspective(20vh);
+    -ms-transform: rotateY(180deg) perspective(20vh);
+    -o-transform: rotateY(180deg) perspective(20vh);
+}
+.back {
+    background-image: url(img/marvel.jpg);
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     background-color: rgb(236,29,35);
+    transform: rotateY(0) perspective(20vh);
+    -webkit-transform: rotateY(0) perspective(20vh);
+    -moz-transform: rotateY(0) perspective(20vh);
+    -ms-transform: rotateY(0) perspective(20vh);
+    -o-transform: rotateY(0) perspective(20vh);
 }
 
-.card.card-in-tab {
-    transform: rotateY(180deg);
-    background-color: #fff;
-    background-position: bottom ;
+.card.card-in-tab .front {
     border-color: transparent;
     background-origin: border-box;
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
+    transform: rotateY(0deg) perspective(20vh);
+    -webkit-transform: rotateY(0deg) perspective(20vh);
+    -moz-transform: rotateY(0deg) perspective(20vh);
+    -ms-transform: rotateY(0deg) perspective(20vh);
+    -o-transform: rotateY(0deg) perspective(20vh);
+}
+.card.card-in-tab .back {
+    border-color: transparent;
+    background-origin: border-box;
+    transform: rotateY(180deg) perspective(20vh);
+    -webkit-transform: rotateY(180deg) perspective(20vh);
+    -moz-transform: rotateY(180deg) perspective(20vh);
+    -ms-transform: rotateY(180deg) perspective(20vh);
+    -o-transform: rotateY(180deg) perspective(20vh);
 }
 
 button.startGame {

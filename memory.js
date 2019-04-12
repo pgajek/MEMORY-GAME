@@ -18,7 +18,7 @@ class Game {
   cardReset() {
     for (const checked of this.cardsChecked) {
       checked.classList.remove('card-in-tab');
-      checked.style.backgroundImage = 'url(img/marvel.jpg)';
+
     }
     this.cardsChecked = [];
     this.canGet = true;
@@ -38,13 +38,13 @@ class Game {
     }
   }
   cardReveal(e) {
-    const card = e.target;
+    const card = e.target.parentElement;
     if (this.canGet) {
       if (card.classList.contains('card') && !card.classList.contains('card-checked')) {
         if (!this.cardsChecked[0] || (this.cardsChecked[0].dataset.index !== card.dataset.index)) {
           this.cardsChecked.push(card);
           card.classList.add('card-in-tab');
-          card.style.backgroundImage = `url(${this.cardsImg[card.dataset.type]})`;
+          // card.style.backgroundImage = `url(${this.cardsImg[card.dataset.type]})`;
         }
         if (this.cardsChecked.length === 2) {
           this.canGet = false;
@@ -80,8 +80,8 @@ class Game {
     this.cards.sort(() => Math.random() - 0.5);
 
     for (let i = 0; i < this.cardCount; i++) {
-      const { cards, cardReveal } = this;
-      const card = new Card('/img/marvel.jpg', i, cards[i], cardReveal.bind(this));
+      const { cards, cardReveal, cardsImg } = this;
+      const card = new Card(cardsImg[cards[i]], i, cards[i], cardReveal.bind(this));
     }
   }
 } // koniec klasy
