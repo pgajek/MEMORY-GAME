@@ -18,7 +18,6 @@ class Game {
   cardReset() {
     for (const checked of this.cardsChecked) {
       checked.classList.remove('card-in-tab');
-
     }
     this.cardsChecked = [];
     this.canGet = true;
@@ -27,7 +26,9 @@ class Game {
   cardRemove() {
     for (const checked of this.cardsChecked) {
       checked.style.backgroundImage = null;
-      checked.classList.remove('card');
+      // checked.classList.remove('card');
+       checked.querySelector('.front').classList.remove('front');
+       checked.querySelector('.back').classList.remove('back');
     }
     this.points += 2;
     document.querySelector('.points').textContent = ` You have: ${this.points} points`;
